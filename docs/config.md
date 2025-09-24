@@ -30,7 +30,6 @@ No changes are needed in the PDF generation logic—just update the config.
 
 # 2. Modifying Data Field Mappings
 Each section uses a JSON path to locate data from the session object. For example:
-
 js:
 ---
 mappings: {

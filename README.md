@@ -7,7 +7,6 @@ A full-stack web application for managing and generating assessment reports.
 Follow these steps to run the project locally:
 
 # 1. Clone the Repository
-
 ```bash
 git clone https://github.com/NagaOmSriKosana/Assessment-Management-System.git
 cd Assessment-Management-System

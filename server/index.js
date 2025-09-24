@@ -6,7 +6,6 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const puppeteer = require('puppeteer');
-
 const assessments = require('./data');
 const config = require('./config.json'); 
 

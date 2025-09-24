@@ -1,0 +1,79 @@
+{
+  "as_hr_02": {
+    "sections": [
+      {
+        "title": "Key Body Vitals",
+        "fields": [
+          { "label": "Overall Health Score", "mapping": { "type": "path", "path": "accuracy" } },
+          { "label": "Heart Rate", "mapping": { "type": "path", "path": "vitalsMap.vitals.heart_rate" } },
+          { "label": "BP Systolic", "mapping": { "type": "path", "path": "vitalsMap.vitals.bp_sys" } },
+          { "label": "BP Diastolic", "mapping": { "type": "path", "path": "vitalsMap.vitals.bp_dia" } },
+          { "label": "BMI", "mapping": { "type": "path", "path": "bodyCompositionData.BMI" }, "classifyKey": "BMI" }
+        ]
+      },
+      {
+        "title": "Fitness Levels",
+        "fields": [
+          {
+            "label": "Jog Test Time",
+            "mapping": { "type": "find", "array": "exercises", "matchKey": "id", "matchValue": 235, "path": "setList.0.time" }
+          }
+        ]
+      },
+      {
+        "title": "Body Composition",
+        "fields": [
+          { "label": "Fat Mass", "mapping": { "type": "path", "path": "bodyCompositionData.FM" } },
+          { "label": "Lean Mass", "mapping": { "type": "path", "path": "bodyCompositionData.LM" } }
+        ]
+      }
+    ],
+    "classifications": {
+      "BMI": [
+        { "label": "Underweight", "min": 0, "max": 18.5 },
+        { "label": "Normal", "min": 18.5, "max": 25 },
+        { "label": "Overweight", "min": 25, "max": 30 },
+        { "label": "Obese", "min": 30, "max": 200 }
+      ]
+    }
+  },
+
+  "as_card_01": {
+    "sections": [
+      {
+        "title": "Key Body Vitals",
+        "fields": [
+          { "label": "Overall Health Score", "mapping": { "type": "path", "path": "accuracy" } },
+          { "label": "Heart Rate", "mapping": { "type": "path", "path": "vitalsMap.vitals.heart_rate" } },
+          { "label": "BP Systolic", "mapping": { "type": "path", "path": "vitalsMap.vitals.bp_sys" } }
+        ]
+      },
+      {
+        "title": "Cardiovascular Endurance",
+        "fields": [
+          {
+            "label": "Jog Test Time",
+            "mapping": { "type": "find", "array": "exercises", "matchKey": "id", "matchValue": 235, "path": "setList.0.time" }
+          }
+        ]
+      },
+      {
+        "title": "Body Composition",
+        "fields": [
+          { "label": "BMI", "mapping": { "type": "path", "path": "bodyCompositionData.BMI" } }
+        ]
+      }
+    ]
+  },
+
+  "default": {
+    "sections": [
+      {
+        "title": "Summary",
+        "fields": [
+          { "label": "Session ID", "mapping": { "type": "path", "path": "session_id" } }
+        ]
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-// backend/index.js
+
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
@@ -7,18 +7,17 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const puppeteer = require('puppeteer');
 
-const assessments = require('./data'); // ./data.js (array)
-const config = require('./config.json'); // mapping config
+const assessments = require('./data');
+const config = require('./config.json'); 
 
 const app = express();
 app.use(cors());
 app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')));
 app.use(express.json());
 
-const USERS = []; // in-memory store for demo
+const USERS = []; 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
 
-// --- Auth endpoints ---
 app.post('/api/signup', async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ error: 'email & password required' });
@@ -53,7 +52,6 @@ function authMiddleware(req, res, next) {
   }
 }
 
-// --- helper to read mapping from config ---
 function getValue(obj, mapping) {
   if (!mapping) return '';
   if (mapping.type === 'path') {
@@ -84,7 +82,6 @@ function getValue(obj, mapping) {
   return '';
 }
 
-// --- render HTML from config + record ---
 function renderHTML(record, assessmentConfig) {
   let html = `
   <!doctype html>
@@ -107,7 +104,6 @@ function renderHTML(record, assessmentConfig) {
     for (const field of (section.fields || [])) {
       const rawValue = getValue(record, field.mapping);
       let display = (rawValue === null || rawValue === undefined) ? '' : rawValue;
-      // classification if requested
       if (field.classifyKey && assessmentConfig.classifications && assessmentConfig.classifications[field.classifyKey]) {
         const ranges = assessmentConfig.classifications[field.classifyKey];
         const n = parseFloat(rawValue);
@@ -125,7 +121,6 @@ function renderHTML(record, assessmentConfig) {
   return html;
 }
 
-// --- generate report endpoint ---
 app.get('/api/generate-report', authMiddleware, async (req, res) => {
   const sessionId = req.query.session_id;
   if (!sessionId) return res.status(400).json({ error: 'session_id required' });

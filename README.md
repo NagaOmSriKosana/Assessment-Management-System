@@ -9,7 +9,7 @@ Follow these steps to run the project locally:
 # 1. Clone the Repository
 
 ```bash
-git clone https://github.com/NagaOmSriKosana/Assessment-Management-System
+git clone https://github.com/NagaOmSriKosana/Assessment-Management-System.git
 cd Assessment-Management-System
 
 #2. Install Backend Dependencies
